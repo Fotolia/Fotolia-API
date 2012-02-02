@@ -1,0 +1,136 @@
+Fotolia API Kits
+================
+Olivier Sirven <olivier@fotolia.com>
+:website: http://www.fotolia.com/
+
+Introduction
+------------
+Fotolia’s industry-leading API allows developers and businesses to
+quickly integrate a vast database of images in their workflows and
+business models.
+
+Whether you’re developing an application with millions of photos, or
+integrating a stock photography library into your business to increase
+customer satisfaction, Fotolia’s powerful APIs are key. But technical
+excellence is only part of the formula – our business development team
+will work with you to determine the best way to maximize results.
+
+Fotolia’s API line-up
+---------------------
+
+Partner API
+~~~~~~~~~~~
+Our Partner API allows you to embed royalty-free image search into
+your website.
+
+- Your customers may search the entire Fotolia library to find images
+  without leaving your website.
+- After finding the perfect image, your customer clicks through to us to
+  buy.
+- Since our Affiliate Program is also built into this API, we
+  automatically pay you for all revenues generated.
+
+http://www.fotolia.com/Services/API/Partner[Learn more]
+
+Business API
+~~~~~~~~~~~~
+Our Business API is for on-demand businesses producing custom
+merchandise and products, including web site templates and printed
+materials.
+
+- Your customers will gain access to high-resolution images directly
+  within your application or web-based tool.
+- Wholesale pricing is available.
+- You can also use this API to embed Fotolia into your intranet or
+  application to make search and download faster.
+
+http://www.fotolia.com/Services/API/Business[Learn more]
+
+Reseller API
+~~~~~~~~~~~~
+Our Reseller API allows you to sell Fotolia’s images under your brand name to your customers.
+
+- Access Fotolia’s entire microstock image library, with full search
+  and download capability.
+- A complete white-label solution, available in select markets around
+  the world.
+
+http://www.fotolia.com/Services/API/Reseller[Learn more]
+
+Content of this package
+-----------------------
+
+This package contains a full implementation of the API for PHP, python
+and java. Each provides an example file to show how to use it.
+
+PHP
+~~~
+
+Requirements:
+
+- http://www.php.net[PHP >= 5.2]
+- http://www.php.net/curl[PHP cURL extension]
+
+.Example usage
+
+[source,php,numbered]
+-------------------------------------------
+include::php/example.php[]
+-------------------------------------------
+
+
+Python
+~~~~~~
+
+Requirements:
+
+- http://python.org/[Python >= 2.7]
+- http://pycurl.sourceforge.net/[pycurl extension]
+
+
+.Example usage
+
+[source,python,numbered]
+-------------------------------------------
+include::python/example.py[]
+-------------------------------------------
+
+
+Java
+~~~~
+
+Requirements:
+
+- http://hc.apache.org[apache common HTTP client]
+- http://code.google.com/p/json-simple/[json simple]
+- http://www.java.com[java JDK >= 6.26]
+
+A simple Makefile is provided to help using it. It supports following
+commands:
+
+build::
+  Build the entire package
+
+jar::
+  Create a JAR file for easy inclusion
+
+clean::
+  Clean the build files
+
+example::
+  Build the example program
+
+.Example usage
+
+[source,java,numbered]
+------------------------
+include::java/example.java[]
+------------------------
+
+Informations
+------------
+Email: api@fotolia.com
+
+http://groups.google.com/group/FotoliaAPI?pli=1[Google Groups]
+
+http://us.fotolia.com/Services/API/Rest/Documentation[Online Documentation]
