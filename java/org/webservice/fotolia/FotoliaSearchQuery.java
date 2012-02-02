@@ -286,7 +286,7 @@ public class FotoliaSearchQuery extends HashMap<String, String>
      */
     public FotoliaSearchQuery setOffensiveFilter(final boolean flag)
     {
-        this.put("filters][offensive:2", Long.toString(flag ? 1 : 0));
+        this.put("filters][offensive:2", Long.toString(flag ? 0 : 1));
         return this;
     }
 
