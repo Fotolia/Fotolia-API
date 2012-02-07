@@ -28,4 +28,4 @@ print_r($api->getUserData());
 
 // purchasing and downloading a file
 $dl_data = $api->getMedia(35957426, 'XS');
-$api.downloadMedia($dl_data['url'], '/tmp/' + $dl_data['name']);
+$api->downloadMedia($dl_data['url'], '/tmp/' + $dl_data['name']);
