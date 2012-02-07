@@ -24,8 +24,8 @@ foreach ($results as $key => $value) {
 
 // loggin in and retrieving user data
 $api->loginUser('your_login', 'your_password');
-print_r(api.getUserData());
+print_r($api->getUserData());
 
 // purchasing and downloading a file
-$dl_data = $api.getMedia(35957426, 'XS');
+$dl_data = $api->getMedia(35957426, 'XS');
 $api.downloadMedia($dl_data['url'], '/tmp/' + $dl_data['name']);
