@@ -359,7 +359,9 @@ class Fotolia_Api
                 }
             }
 
-            throw new Fotolia_Api_Exception('Unknown API error');
+            if ($http_code != 200) {
+                throw new Fotolia_Api_Exception('Unknown API error');
+            }
         } elseif ($http_code != 200) {
             throw new Fotolia_Api_Exception('Invalid response HTTP code: ' . $http_code);
         }
