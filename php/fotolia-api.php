@@ -839,7 +839,7 @@ class Fotolia_Api
                 $error_msg = $res['error'];
 
                 if (!empty($res['code'])) {
-                    $error_code = $res['code'];
+                    $error_code = (int) $res['code'];
                 }
             } else {
                 $error_msg = 'Invalid response HTTP code: ' . $http_code;
