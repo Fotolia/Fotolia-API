@@ -281,6 +281,24 @@ class Rest:
         self._session_id = None
         self._session_id_timestamp = None
 
+    def create_user(self, properties):
+        """
+        Create a user
+        """
+
+        required_properties = [
+            'login',
+            'password',
+            'email',
+            'language_id'
+            ]
+
+        for required_property in required_properties:
+            if required_property not in properties.keys():
+                fotolia_api.ApiError('Missing required property: ' + required_property)
+
+        return self._api('createUser', properties)
+
     def get_user_data(self):
         """
         This method returns data for logged user.
@@ -657,6 +675,7 @@ class Rest:
 
         if False or \
                 method == 'loginUser' or \
+                method == 'createUser' or \
                 method == 'shoppingcart/add' or \
                 method == 'shoppingcart/update' or \
                 method == 'shoppingcart/remove' or \
@@ -729,6 +748,7 @@ class Rest:
 
         if False or \
                 method == 'loginUser' or \
+                method == 'createUser' or \
                 method == 'refreshToken' or \
                 method == 'getUserData' or \
                 method == 'getSalesData' or \

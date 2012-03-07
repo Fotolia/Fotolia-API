@@ -645,6 +645,22 @@ public class FotoliaApi
     }
 
     /**
+     * Create a user
+     *
+     * @param  properties
+     * @return Long
+     */
+    public Long createUser(final FotoliaCreateMemberQuery properties)
+    {
+        FotoliaApiArgs args;
+        JSONObject res;
+        Date cdate;
+
+        return Long.parseLong(this._api("createUser", properties.getFotoliaApiArgs()).toString());
+    }
+
+
+    /**
      * Returns user's data
      *
      * @return JSONObject
@@ -1461,6 +1477,7 @@ public class FotoliaApi
 
         if (
             method_name == "loginUser" ||
+            method_name == "createUser" ||
             method_name == "refreshToken" ||
             method_name == "getUserData" ||
             method_name == "getSalesData" ||
@@ -1499,6 +1516,7 @@ public class FotoliaApi
     {
         if (
             method == "loginUser" ||
+            method == "createUser" ||
             method == "shoppingcart/add" ||
             method == "shoppingcart/update" ||
             method == "shoppingcart/remove" ||

@@ -1,6 +1,7 @@
 SRC	= org/webservice/fotolia/FotoliaApi.java org/webservice/fotolia/FotoliaApiResponse.java \
 	org/webservice/fotolia/FotoliaApiException.java org/webservice/fotolia/FotoliaApiArgs.java \
-	org/webservice/fotolia/FotoliaSubAccountData.java org/webservice/fotolia/FotoliaSearchQuery.java
+	org/webservice/fotolia/FotoliaSubAccountData.java org/webservice/fotolia/FotoliaSearchQuery.java \
+	org/webservice/fotolia/FotoliaCreateMemberQuery.java
 
 all: build jar
 

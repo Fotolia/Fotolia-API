@@ -410,6 +410,30 @@ class Fotolia_Api
     }
 
     /**
+     * Create a new Fotolia Member
+     *
+     * @param  array $properties
+     * @return int
+     */
+    public function createUser(array $properties)
+    {
+        $required_properties = array(
+            'login',
+            'password',
+            'email',
+            'language_id'
+        );
+
+        foreach ($required_properties as $required_property) {
+            if (empty($properties[$required_property])) {
+                throw new Fotolia_Api_Exception('Missing required property: ' . $required_property);
+            }
+        }
+
+        return $this->_api('createUser', $properties);
+    }
+
+    /**
      * This method returns data for logged user.
      *
      * @return array
@@ -895,6 +919,7 @@ class Fotolia_Api
                 return 'media';
 
             case 'loginUser':
+            case 'createUser':
             case 'refreshToken':
             case 'getUserData':
             case 'getSalesData':
@@ -1035,6 +1060,7 @@ class Fotolia_Api
     {
         switch ($method) {
             case 'loginUser':
+            case 'createUser':
             case 'shoppingcart/add':
             case 'shoppingcart/update':
             case 'shoppingcart/remove':
