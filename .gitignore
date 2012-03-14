@@ -1,2 +1,5 @@
 *.class
 java/*.jar
+*/target
+*/.idea
+*.iml
