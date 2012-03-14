@@ -1,0 +1,109 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.webservice.fotolia</groupId>
+    <artifactId>fotolia-api-client</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1</version>
+    <name>fotolia-api-client</name>
+    <url>http://us.fotolia.com/Services/API/Rest/Documentation</url>
+    <description>Fotolia REST-API client library for java</description>
+
+<!--
+    <profiles>
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <fotolia.api.key>your_registered_fotolia_api_key</fotolia.api.key>
+                <fotolia.api.login.name>your_fotolia_login_name</fotolia.api.login.name>
+                <fotolia.api.password>your_fotolia_password</fotolia.api.password>
+            </properties>
+        </profile>
+    </profiles>
+-->
+
+    <scm>
+        <connection>scm:git://github.com/Fotolia/Fotolia-API.git</connection>
+        <developerConnection>scm:git:https://github.com/Fotolia/Fotolia-API.git/</developerConnection>
+        <url>https://github.com/Fotolia/Fotolia-API</url>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.1.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.5</version>
+                <executions>
+                    <execution>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>testResources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- specify UTF-8, ISO-8859-1 or any other file encoding -->
+                    <encoding>UTF-8</encoding>
+                    <outputDirectory>${basedir}/target/test-classes</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+
+    <developers>
+        <developer>
+            <id>olivier</id>
+            <name>Olivier Sirven</name>
+            <email>olivier@fotolia.com</email>
+            <roles>
+                <role>Java Developer</role>
+                <role>Architect</role>
+            </roles>
+            <organization>fotolia.com</organization>
+            <timezone>-7</timezone>
+            <organizationUrl>http://www.fotolia.com/</organizationUrl>
+        </developer>
+    </developers>
+
+    <mailingLists>
+        <mailingList>
+            <name>Mail Support</name>
+            <post>api@fotolia.com</post>
+            <subscribe>http://groups.google.com/group/FotoliaAPI?pli=1</subscribe>
+        </mailingList>
+    </mailingLists>
+
+</project>
