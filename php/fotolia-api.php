@@ -430,7 +430,7 @@ class Fotolia_Api
             }
         }
 
-        return $this->_api('createUser', $properties);
+        return $this->_api('createUser', array('properties' => $properties));
     }
 
     /**
