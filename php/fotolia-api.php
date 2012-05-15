@@ -391,11 +391,20 @@ class Fotolia_Api
      */
     public function loginUser($login, $pass)
     {
+        $old_https_flag = $this->_use_https;
+        if (!$old_https_flag) {
+            $this->setHttpsMode(true);
+        }
+
         $res = $this->_api('loginUser',
                              array(
                                  'login' => $login,
                                  'pass' => $pass,
                              ));
+
+        if (!$old_https_flag) {
+            $this->setHttpsMode(false);
+        }
 
         $this->_session_id = $res['session_token'];
         $this->_session_id_timestamp = time();
