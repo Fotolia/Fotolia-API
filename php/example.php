@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-require_once 'fotolia_api.php';
+require_once 'fotolia-api.php';
 
 $api = new Fotolia_Api('your_api_key');
 
