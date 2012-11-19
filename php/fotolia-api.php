@@ -591,14 +591,14 @@ class Fotolia_Api
      * @return array
      */
     public function getUserGalleryMedias($page = 0,
-                                         $per_page = 32,
+                                         $nb_per_page = 32,
                                          $thumbnail_size = 110,
                                          $id = '')
     {
         return $this->_api('getUserGalleryMedias',
                              array(
                                  'page' => $page,
-                                 'per_page' => $per_page,
+                                 'nb_per_page' => $nb_per_page,
                                  'thumbnail_size' => $thumbnail_size,
                                  'id' => $id,
                              ));
