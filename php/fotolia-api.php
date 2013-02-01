@@ -315,6 +315,29 @@ class Fotolia_Api
      */
     public function downloadMedia($download_url, $output_file = NULL)
     {
+        return $this->_download($download_url, $output_file);
+    }
+
+    /**
+     * Download a media comp and write it to a file if necessary
+     *
+     * @param  string $download_url URL as returned by getMediaComp()
+     * @param  string $output_file if null the downloaded file will be echoed on standard output
+     */
+    public function downloadMediaComp($download_url, $output_file = NULL)
+    {
+        return $this->_download($download_url, $output_file, false);
+    }
+
+    /**
+     * Download a content and write it to a file if necessary
+     *
+     * @param  string $download_url URL
+     * @param  string $output_file if null the downloaded file will be echoed on standard output
+     * @param  bool $http_auth set curl password if needed
+     */
+    private function _download($download_url, $output_file = NULL, $http_auth = true)
+    {
         $ch = $this->_getCurlHandler($download_url);
 
         if ($output_file === NULL) {
@@ -327,7 +350,9 @@ class Fotolia_Api
         }
 
         curl_setopt($ch, CURLOPT_FILE, $output_fd);
-        curl_setopt($ch, CURLOPT_USERPWD, $this->_getHttpAuth(TRUE, TRUE));
+        if ($http_auth) {
+            curl_setopt($ch, CURLOPT_USERPWD, $this->_getHttpAuth(TRUE, TRUE));
+        }
 
         $response = curl_exec($ch);
 
