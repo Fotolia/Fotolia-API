@@ -341,7 +341,11 @@ class Fotolia_Api
         $ch = $this->_getCurlHandler($download_url);
 
         if ($output_file === NULL) {
-            $output_file = 'php://stdout';
+            if ($this->_isShellMode()) {
+                $output_file = 'php://stdout';
+            } else {
+                $output_file = 'php://output';
+            }
         }
 
         $output_fd = fopen($output_file, 'w');
@@ -1121,6 +1125,14 @@ class Fotolia_Api
         }
 
         return $is_post_method;
+    }
+
+    /*
+     * Define if the api is called in CLI mode
+     */
+    private function _isShellMode()
+    {
+        return !empty($_SERVER['SHELL']);
     }
 }
 
