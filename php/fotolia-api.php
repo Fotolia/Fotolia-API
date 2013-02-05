@@ -336,7 +336,7 @@ class Fotolia_Api
      * @param  string $output_file if null the downloaded file will be echoed on standard output
      * @param  bool $http_auth set curl password if needed
      */
-    private function _download($download_url, $output_file = NULL, $http_auth = true)
+    private function _download($download_url, $output_file = NULL, $http_auth_required = true)
     {
         $ch = $this->_getCurlHandler($download_url);
 
@@ -350,9 +350,7 @@ class Fotolia_Api
         }
 
         curl_setopt($ch, CURLOPT_FILE, $output_fd);
-        if ($http_auth) {
-            curl_setopt($ch, CURLOPT_USERPWD, $this->_getHttpAuth(TRUE, TRUE));
-        }
+        curl_setopt($ch, CURLOPT_USERPWD, $this->_getHttpAuth(TRUE, $http_auth_required));
 
         $response = curl_exec($ch);
 
