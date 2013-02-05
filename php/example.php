@@ -22,6 +22,10 @@ foreach ($results as $key => $value) {
     }
 }
 
+// download comp file
+$comp_dl_data = $api->getMediaComp(35957426);
+$api->downloadMediaComp($comp_dl_data['url'], '/tmp/comp.jpg');
+
 // loggin in and retrieving user data
 $api->loginUser('your_login', 'your_password');
 print_r($api->getUserData());
