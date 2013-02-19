@@ -202,6 +202,22 @@ class Fotolia_Api
     }
 
     /**
+     * This method returns public seasonal galleries for a defined language
+     *
+     * @param  int    $language_id
+     * @return array
+     */
+    public function getSeasonalGalleries($language_id = Fotolia_Api::LANGUAGE_ID_EN_US, $thumbnail_size = 110, $theme_id = null)
+    {
+        return $this->_api('getSeasonalGalleries',
+                              array(
+                                   'language_id' => $language_id,
+                                   'thumbnail_size' => $thumbnail_size,
+                                   'theme_id' => $theme_id
+                              ));
+    }
+
+    /**
      * This method returns Fotolia list of countries.
      *
      * @param  int    $language_id
@@ -944,6 +960,7 @@ class Fotolia_Api
             case 'getCategories2':
             case 'getTags':
             case 'getGalleries':
+            case 'getSeasonalGalleries':
             case 'getCountries':
                 return 'search';
 
