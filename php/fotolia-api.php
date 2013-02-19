@@ -207,15 +207,14 @@ class Fotolia_Api
      * @param  int    $language_id
      * @return array
      */
-    public function getSeasonalGalleries($language_id = Fotolia_Api::LANGUAGE_ID_EN_US, $thumbnail_size = 110, $theme_id = 0)
+    public function getSeasonalGalleries($language_id = Fotolia_Api::LANGUAGE_ID_EN_US, $thumbnail_size = 110, $theme_id = null)
     {
-        $args = array(
-             'language_id' => $language_id
-             ,'thumbnail_size' => $thumbnail_size
-        );
-        if ((int)$theme_id > 0) $args['theme_id'] = $theme_id;
-
-        return $this->_api('getSeasonalGalleries', $args);
+        return $this->_api('getSeasonalGalleries',
+                              array(
+                                   'language_id' => $language_id,
+                                   'thumbnail_size' => $thumbnail_size,
+                                   'theme_id' => $theme_id
+                              ));
     }
 
     /**
