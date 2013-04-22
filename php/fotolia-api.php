@@ -211,9 +211,9 @@ class Fotolia_Api
     {
         return $this->_api('getSeasonalGalleries',
                               array(
-                                   'language_id' => $language_id,
-                                   'thumbnail_size' => $thumbnail_size,
-                                   'theme_id' => $theme_id
+                                  'language_id' => $language_id,
+                                  'thumbnail_size' => $thumbnail_size,
+                                  'theme_id' => $theme_id
                               ));
     }
 
