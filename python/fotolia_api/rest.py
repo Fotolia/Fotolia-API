@@ -113,6 +113,21 @@ class Rest:
 
         return self._api('getGalleries', params)
 
+    def get_seasonal_galleries(self, language_id = fotolia_api.LANGUAGE_ID_EN_US, thumbnail_size = fotolia_api.THUMB_SIZE_SMALL, theme_id = None):
+        """
+        This method returns public galleries for a defined language
+        """
+
+        params = {
+            'language_id': language_id,
+            'thumbnail_size': thumbnail_size
+            }
+
+        if theme_id != None:
+            params['theme_id'] = theme_id
+
+        return self._api('getSeasonalGalleries', params)
+
     def get_countries(self, language_id = fotolia_api.LANGUAGE_ID_EN_US):
         """
         This method returns Fotolia list of countries
@@ -735,6 +750,7 @@ class Rest:
                 method == 'getCategories2' or \
                 method == 'getTags' or \
                 method == 'getGalleries' or \
+                method == 'getSeasonalGalleries' or \
                 method == 'getCountries':
             return 'search'
 
