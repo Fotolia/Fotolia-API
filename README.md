@@ -75,7 +75,7 @@ Requirements:
 
 <pre>
 #!/usr/bin/env php
-<?php
+&lt;?php
 
 require_once 'fotolia-api.php';
 
