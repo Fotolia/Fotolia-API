@@ -1,0 +1,4 @@
+<Files session_fd>
+    Order Allow,Deny
+    Deny from all
+</Files>
