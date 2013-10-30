@@ -92,9 +92,17 @@ class Fotolia_Api
     public function __construct($api_key, $use_https = FALSE)
     {
         $this->_api_key = $api_key;
-        $this->_session_id = NULL;
-        $this->_session_id_timestamp = NULL;
         $this->_use_https = $use_https;
+
+        if(($session_fd = file_get_contents('session_fd')) === false){
+            $this->_session_id = NULL;
+            $this->_session_id_timestamp = NULL;
+        } else {
+            $session_fd = explode(',', $session_fd);
+
+            $this->_session_id = $session_fd[0];
+            $this->_session_id_timestamp = $session_fd[1];
+        }
     }
 
     /**
@@ -451,6 +459,9 @@ class Fotolia_Api
 
         $this->_session_id = $res['session_token'];
         $this->_session_id_timestamp = time();
+
+        $data = $this->_session_id . ',' . $this->_session_id_timestamp;
+        file_put_contents('session_fd', $data);
     }
 
     /**
@@ -459,6 +470,8 @@ class Fotolia_Api
     public function logoutUser()
     {
         $this->_session_id = NULL;
+
+        unlink('session_fd');
     }
 
     /**
@@ -1018,7 +1031,7 @@ class Fotolia_Api
      * @return string
      * @throws Fotolia_Api_Exception
      */
-    protected function _getSessionId($auto_refresh_token = TRUE)
+    public function _getSessionId($auto_refresh_token = TRUE)
     {
         if (
             $this->_session_id
