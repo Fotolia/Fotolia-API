@@ -54,6 +54,8 @@ public class FotoliaApi
     public static int LANGUAGE_ID_ZH_CN= 13;
     public static int LANGUAGE_ID_TR_TR= 14;
     public static int LANGUAGE_ID_KO_KR= 15;
+    public static int LANGUAGE_ID_NL_NL= 22;
+    public static int LANGUAGE_ID_SV_SE= 23;
 
     public static int THUMB_SIZE_TINY = 30;
     public static int THUMB_SIZE_SMALL = 110;
