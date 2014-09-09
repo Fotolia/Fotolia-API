@@ -31,7 +31,7 @@ import org.webservice.fotolia.FotoliaApiResponse;
 
 public class FotoliaApi
 {
-    public static String REST_URI = "api.fotolia.com/Rest";
+    public static String REST_URI = "https://api.fotolia.com/Rest";
 
     public static String REST_VERSION = "1";
 
@@ -69,11 +69,6 @@ public class FotoliaApi
     private final String _api_key;
 
     /**
-     * HTTPs mode flag
-     */
-    private boolean _use_https;
-
-    /**
      * Current session ID
      */
     private String _session_id;
@@ -98,12 +93,10 @@ public class FotoliaApi
      * Constructor
      *
      * @param  api_key
-     * @param  use_https
      */
-    public FotoliaApi(final String api_key, final boolean use_https)
+    public FotoliaApi(final String api_key)
     {
         this._api_key = api_key;
-        this.setHttpsMode(use_https);
     }
 
     /**
@@ -114,18 +107,6 @@ public class FotoliaApi
     public String getApiKey()
     {
         return this._api_key;
-    }
-
-    /**
-     * Sets the HTTPs mode flag
-     *
-     * @param  flag
-     * @return FotoliaApi
-     */
-    public FotoliaApi setHttpsMode(final boolean flag)
-    {
-        this._use_https = flag;
-        return this;
     }
 
     /**
@@ -1431,13 +1412,7 @@ public class FotoliaApi
             namespace += "/";
         }
 
-        uri = "http";
-
-        if (this._use_https) {
-            uri += 's';
-        }
-
-        uri += "://" + FotoliaApi.REST_URI + "/" + FotoliaApi.REST_VERSION + "/" + namespace + method_name;
+        uri = FotoliaApi.REST_URI + "/" + FotoliaApi.REST_VERSION + "/" + namespace + method_name;
 
         if (args != null) {
             uri += "?" + args;

@@ -22,7 +22,7 @@ class Fotolia_Api
     /**
      * Fotolia REST uri
      */
-    const FOTOLIA_REST_URI = 'api.fotolia.com/Rest';
+    const FOTOLIA_REST_URI = 'https://api.fotolia.com/Rest';
 
     /**
      * Fotolia REST API version
@@ -66,11 +66,6 @@ class Fotolia_Api
     private $_api_key;
 
     /**
-     * HTTPs mode flag
-     */
-    private $_use_https;
-
-    /**
      * Current session id
      *
      * @var $_session_id string
@@ -89,12 +84,11 @@ class Fotolia_Api
      *
      * @param  string $api_key
      */
-    public function __construct($api_key, $use_https = FALSE)
+    public function __construct($api_key)
     {
         $this->_api_key = $api_key;
         $this->_session_id = NULL;
         $this->_session_id_timestamp = NULL;
-        $this->_use_https = $use_https;
     }
 
     /**
@@ -105,15 +99,6 @@ class Fotolia_Api
     public function getApiKey()
     {
         return $this->_api_key;
-    }
-
-    /**
-     * Toggle HTTPS
-     */
-    public function setHttpsMode($flag)
-    {
-        $this->_use_https = $flag;
-        return $this;
     }
 
     /**
@@ -434,20 +419,11 @@ class Fotolia_Api
      */
     public function loginUser($login, $pass)
     {
-        $old_https_flag = $this->_use_https;
-        if (!$old_https_flag) {
-            $this->setHttpsMode(true);
-        }
-
         $res = $this->_api('loginUser',
                              array(
                                  'login' => $login,
                                  'pass' => $pass,
                              ));
-
-        if (!$old_https_flag) {
-            $this->setHttpsMode(false);
-        }
 
         $this->_session_id = $res['session_token'];
         $this->_session_id_timestamp = time();
@@ -1042,14 +1018,12 @@ class Fotolia_Api
      */
     private function _getFullURI($method, array $query = NULL)
     {
-        $scheme = $this->_use_https ? 'https' : 'http';
-
         $namespace = $this->_getNamespace($method);
         if (!empty($namespace)) {
             $namespace .= '/';
         }
 
-        $uri = $scheme . '://' . Fotolia_Api::FOTOLIA_REST_URI . '/'
+        $uri = Fotolia_Api::FOTOLIA_REST_URI . '/'
             . Fotolia_Api::FOTOLIA_REST_VERSION . '/' . $namespace . $method;
 
         if ($query !== NULL) {

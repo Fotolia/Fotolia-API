@@ -15,22 +15,18 @@ class Rest:
     # api key
     _api_key = None
 
-    # https toggle flag
-    _use_https = False
-
     # session ID if any
     _session_id = None
 
     # session ID timestamp if any
     _session_id_timestamp = None
 
-    def __init__(self, api_key, use_https = False):
+    def __init__(self, api_key):
         """
         Constructor
         """
 
         self._api_key = api_key
-        self._use_https = use_https
         self._session_id = None
         self._session_id_timestamp = None
 
@@ -40,13 +36,6 @@ class Rest:
         """
 
         return self._api_key
-
-    def set_https_mode(self, flag):
-        """
-        Toggle HTTPS
-        """
-
-        self._use_https = flag
 
     def get_search_results(self, search_params, result_columns = []):
         """
@@ -722,17 +711,13 @@ class Rest:
         Generate the full URI to use for API calls
         """
 
-        scheme = 'http'
-        if self._use_https:
-            scheme += 's'
-
         namespace = self._get_namespace(method)
         if namespace != None:
             namespace += '/'
         else:
             namespace = ''
 
-        uri = scheme + '://' + fotolia_api.REST_URI + '/' + fotolia_api.REST_VERSION + '/' + namespace + method
+        uri = fotolia_api.REST_URI + '/' + fotolia_api.REST_VERSION + '/' + namespace + method
 
         if query != None:
             uri += '?' + self._recursive_urlencode(query)

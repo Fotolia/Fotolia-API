@@ -1,4 +1,4 @@
-REST_URI = "api.fotolia.com/Rest"
+REST_URI = "https://api.fotolia.com/Rest"
 REST_VERSION = "1"
 
 LANGUAGE_ID_FR_FR = 1
