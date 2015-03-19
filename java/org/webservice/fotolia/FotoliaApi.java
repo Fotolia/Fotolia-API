@@ -226,6 +226,49 @@ public class FotoliaApi
     }
 
     /**
+     * Download a media and get the InputStream with its binary
+     *
+     * @param  download_url URL as returned by getMedia()
+     */
+    public InputStream getMediaInputStream(final String download_url) throws FileNotFoundException, IOException, FotoliaApiException
+    {
+        DefaultHttpClient client;
+        HttpResponse response;
+        StatusLine statusLine;
+        HttpEntity entity;
+        JSONObject obj;
+        InputStream inputStream = null;
+        String error_msg;
+        int error_code;
+
+        client = this._getHttpClient(true);
+        response = client.execute(new HttpGet(download_url));
+
+        statusLine = response.getStatusLine();
+        entity = response.getEntity();
+        if (statusLine.getStatusCode() != 200) {
+            if (entity == null) {
+                throw new FotoliaApiException(statusLine.getStatusCode(),
+                                              statusLine.getReasonPhrase());
+            } else {
+                obj = (JSONObject) JSONValue.parse(EntityUtils.toString(entity));
+                error_msg = (String) obj.get("error");
+                if (obj.get("code") != null) {
+                    error_code = Integer.parseInt((String) obj.get("code"));
+                } else {
+                    error_code = statusLine.getStatusCode();
+                }
+
+                throw new FotoliaApiException(error_code, error_msg);
+            }
+
+        }
+
+        inputStream = new ByteArrayInputStream(EntityUtils.toByteArray(entity));
+        return inputStream;
+    }
+
+    /**
      * This method returns childs of a parent category in fotolia representative category system.
      * This method could be used to display a part of the category system or the all tree.
      * Fotolia categories system counts three levels.
