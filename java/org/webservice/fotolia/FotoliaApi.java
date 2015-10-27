@@ -1360,7 +1360,7 @@ public class FotoliaApi
             ctime.getTime() > this._session_id_timestamp + FotoliaApi.TOKEN_TIMEOUT
             && auto_refresh_token
             ) {
-            response = this._api("refreshToken", null, false);
+            response = this._api("refreshToken", new FotoliaApiArgs(), false);
             this._session_id = (String) response.get("session_token");
             this._session_id_timestamp = ctime.getTime();
         }
