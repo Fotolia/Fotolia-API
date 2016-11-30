@@ -86,17 +86,6 @@ public class FotoliaApi
     public FotoliaApi(final String api_key)
     {
         this._api_key = api_key;
-        this.setHttpsMode(false);
-    }
-
-    /**
-     * Constructor
-     *
-     * @param  api_key
-     */
-    public FotoliaApi(final String api_key)
-    {
-        this._api_key = api_key;
     }
 
     /**
