@@ -1,9 +1,10 @@
 import pycurl
 import json
-import StringIO
 import urllib
 import time
 import os
+
+from io import BytesIO
 
 import fotolia_api
 
@@ -605,13 +606,12 @@ class Rest:
         uri = self._get_full_uri(method, query)
         curl = self._get_curl(uri, post_data, auto_refresh_token)
 
-        buf = StringIO.StringIO()
+        buf = BytesIO()
         curl.setopt(pycurl.WRITEFUNCTION, buf.write)
-
         curl.perform()
         http_code = curl.getinfo(pycurl.HTTP_CODE)
 
-        res = json.loads(buf.getvalue())
+        res = json.loads(buf.getvalue().decode('utf-8'))
 
         if 'error' in res or http_code != 200:
             error_code = 0
@@ -786,7 +786,7 @@ class Rest:
                 else:
                     new_pair = None
                     if base:
-                        new_pair = "%s%%5B%s%%5D=%s" % (base, urllib.quote(str(key)), urllib.quote(str(value)))
+                        new_pair = "%s%%5B%s%%5D=%s" % (base, urllib.parse.quote(str(key)), urllib.parse.quote(str(value)))
                         pairs.append(new_pair)
                     else:
                         if type(value).__name__ == 'list':
