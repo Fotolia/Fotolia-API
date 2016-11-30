@@ -57,6 +57,8 @@ class Fotolia_Api
     const LANGUAGE_ID_ZH_CN = 13;
     const LANGUAGE_ID_TR_TR = 14;
     const LANGUAGE_ID_KO_KR = 15;
+    const LANGUAGE_ID_NL_NL = 22;
+    const LANGUAGE_ID_SV_SE = 23;
 
     /**
      * API key
