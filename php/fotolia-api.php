@@ -356,6 +356,7 @@ class Fotolia_Api
 
         curl_setopt($ch, CURLOPT_FILE, $output_fd);
         curl_setopt($ch, CURLOPT_USERPWD, $this->_getHttpAuth(TRUE, $http_auth_required));
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
 
         $response = curl_exec($ch);
 
